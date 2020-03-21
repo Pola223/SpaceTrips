@@ -12,6 +12,8 @@ public interface FlightRepository extends CrudRepository<Flight, Long> {
 
     List<Flight> findAll();
 
+    List<Flight> findFlightById(Long id);
+
     Flight save(Flight flight);
 
 }

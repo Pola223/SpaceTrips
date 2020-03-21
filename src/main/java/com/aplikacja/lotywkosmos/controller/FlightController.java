@@ -4,8 +4,10 @@ package com.aplikacja.lotywkosmos.controller;
 import com.aplikacja.lotywkosmos.model.Flight;
 import com.aplikacja.lotywkosmos.repository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,8 +28,9 @@ public class FlightController {
     }
 
     @PostMapping("/flights")
-    public void addingFlight(Flight flight){
+    public ResponseEntity<?> addFlight(@RequestBody Flight flight){
         flightRepository.save(flight);
+        return ResponseEntity.ok("DODANO LOT");
     }
 
 }
