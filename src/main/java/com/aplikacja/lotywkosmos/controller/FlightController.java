@@ -5,6 +5,7 @@ import com.aplikacja.lotywkosmos.model.Flight;
 import com.aplikacja.lotywkosmos.repository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,9 +20,14 @@ public class FlightController {
         this.flightRepository = flightRepository;
     }
 
-    @GetMapping
+    @GetMapping("/flights")
     public List<Flight> getFlights(){
         return flightRepository.findAll();
+    }
+
+    @PostMapping("/flights")
+    public void addFlight(Flight flight){
+        flightRepository.save(flight);
     }
 
 }

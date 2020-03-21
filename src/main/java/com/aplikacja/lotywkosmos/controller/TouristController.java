@@ -24,7 +24,7 @@ public class TouristController {
     }
 
 
-    @GetMapping
+    @GetMapping("/tourists")
     public List<Tourist> getTourists(
             @RequestParam("name") Optional<String> name,
             @RequestParam("lastName") Optional<String> lastName){
