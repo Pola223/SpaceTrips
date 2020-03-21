@@ -51,11 +51,35 @@ public class TouristController {
 
     @DeleteMapping("/tourists/{id}")
     public ResponseEntity<?> deleteTourist(@PathVariable("id") Long id){
-        touristRepository.deleteById(id);
+        touristRepository.deleteTouristById(id);
         return ResponseEntity.ok("OK");
     }
 
+    @PatchMapping("tourists/{id}")
+    public ResponseEntity<?> changeNameTourist(@PathVariable("id") Long id,
+                                               @RequestParam("name") Optional<String> name,
+                                               @RequestParam("lastName") Optional<String> lastName,
+                                               @RequestParam("notes") Optional<String> notes
+                                            ){
 
+        boolean isAnythingToChangeProvided = name.isPresent() || lastName.isPresent() || notes.isPresent();
+
+        if (isAnythingToChangeProvided){
+            if (name.isPresent()){
+                touristRepository.findTouristById(id).setName(name.toString());
+
+            }
+            if (lastName.isPresent()) {
+                touristRepository.findTouristById(id).setLastName(lastName.toString());
+
+            }
+            return ResponseEntity.ok("Tourist not changed");
+        } else {
+            return ResponseEntity.ok("NOTHING TO CHANGE");
+        }
+
+
+    }
 
 
 

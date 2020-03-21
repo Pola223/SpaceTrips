@@ -28,12 +28,12 @@ public class Tourist {
 
     public Tourist(){}
 
-    public Tourist(String name, String lastName, String sex, String country, String birthDate){
+    public Tourist(String name, String lastName, String sex, String country, LocalDate birthDate){
         this.name=name;
         this.lastName = lastName;
         this.sex = sex;
         this.country = country;
-        this.birthDate = LocalDate.parse(birthDate);
+        this.birthDate = birthDate;
     }
 
     public Long getId() {
@@ -94,8 +94,8 @@ public class Tourist {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = LocalDate.parse(birthDate);
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
 
