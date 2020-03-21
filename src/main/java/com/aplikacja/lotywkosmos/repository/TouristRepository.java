@@ -20,7 +20,10 @@ public interface TouristRepository extends CrudRepository<Tourist, Long> {
 
     List<Tourist> findTouristsByCountry(String country);
 
-    List<Tourist> findTouristsByFlight(String flight);
+    //List<Tourist> findTouristsByFlight(String flight);
 
     Tourist save(Tourist tourist);
+
+    Tourist deleteById(Integer id);
+
 }

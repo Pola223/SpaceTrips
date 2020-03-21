@@ -49,6 +49,13 @@ public class TouristController {
     }
 
 
+    @DeleteMapping("/tourists/{id}")
+    public ResponseEntity<?> deleteTourist(@PathVariable("id") Long id){
+        touristRepository.deleteById(id);
+        return ResponseEntity.ok("OK");
+    }
+
+
 
 
 

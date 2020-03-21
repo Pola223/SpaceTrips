@@ -2,6 +2,8 @@ package com.aplikacja.lotywkosmos.model;
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,20 +20,20 @@ public class Tourist {
     private String sex;         //M or F
     private String country;
     private String notes;
-    private Date birthDate;
+    private LocalDate birthDate;
 
-    @OneToMany
-    List<Flight> flights = new ArrayList<>();
+    //@OneToMany
+    //List<Flight> flights = new ArrayList<>();
 
 
     public Tourist(){}
 
-    public Tourist(String name, String lastName, String sex, String country, Date birthDate){
+    public Tourist(String name, String lastName, String sex, String country, String birthDate){
         this.name=name;
         this.lastName = lastName;
         this.sex = sex;
         this.country = country;
-        this.birthDate = birthDate;
+        this.birthDate = LocalDate.parse(birthDate);
     }
 
     public Long getId() {
@@ -88,12 +90,12 @@ public class Tourist {
     }
 
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDate(String birthDate) {
+        this.birthDate = LocalDate.parse(birthDate);
     }
 
 
