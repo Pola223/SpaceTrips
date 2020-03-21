@@ -3,6 +3,7 @@ package com.aplikacja.lotywkosmos.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,6 @@ public class Flight {
     @Id
     @GeneratedValue
     private Long id;
-
     private LocalDateTime takeoffDateTime;
     private LocalDateTime landingDateTime;
     private Integer seatsAvailable;
@@ -22,8 +22,8 @@ public class Flight {
     public Flight() {
     }
 
-    public Flight(LocalDateTime takeoffDateTime, LocalDateTime landingDateTime, Integer seatsAvailable, Integer ticketPrice){
-        this.takeoffDateTime = takeoffDateTime;
+    public Flight(String takeoffDateTime, LocalDateTime landingDateTime, int seatsAvailable, Integer ticketPrice){
+        this.takeoffDateTime = LocalDateTime.parse(takeoffDateTime);
         this.landingDateTime = landingDateTime;
         this.seatsAvailable = seatsAvailable;
         this.ticketPrice = ticketPrice;
@@ -37,6 +37,7 @@ public class Flight {
         this.id = id;
     }
 
+
     public LocalDateTime getTakeoffDateTime() {
         return takeoffDateTime;
     }
@@ -44,6 +45,7 @@ public class Flight {
     public void setTakeoffDateTime(LocalDateTime takeoffDateTime) {
         this.takeoffDateTime = takeoffDateTime;
     }
+
 
     public LocalDateTime getLandingDateTime() {
         return landingDateTime;
@@ -53,6 +55,7 @@ public class Flight {
         this.landingDateTime = landingDateTime;
     }
 
+
     public Integer getSeatsAvailable() {
         return seatsAvailable;
     }
@@ -60,6 +63,7 @@ public class Flight {
     public void setSeatsAvailable(Integer seatsAvailable) {
         this.seatsAvailable = seatsAvailable;
     }
+
 
     public Integer getTicketPrice() {
         return ticketPrice;

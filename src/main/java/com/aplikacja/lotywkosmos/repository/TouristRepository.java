@@ -30,5 +30,4 @@ public interface TouristRepository extends CrudRepository<Tourist, Long> {
 
 
 
-
 }

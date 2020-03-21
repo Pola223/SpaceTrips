@@ -26,7 +26,7 @@ public class FlightController {
     }
 
     @PostMapping("/flights")
-    public void addFlight(Flight flight){
+    public void addingFlight(Flight flight){
         flightRepository.save(flight);
     }
 

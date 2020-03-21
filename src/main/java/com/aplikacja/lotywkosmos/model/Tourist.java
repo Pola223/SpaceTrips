@@ -22,8 +22,8 @@ public class Tourist {
     private String notes;
     private LocalDate birthDate;
 
-    //@OneToMany
-    //List<Flight> flights = new ArrayList<>();
+    @OneToMany
+    List<Flight> flights = new ArrayList<>();
 
 
     public Tourist(){}
@@ -96,6 +96,11 @@ public class Tourist {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+
+    public List<Flight> getFlights(){
+        return flights;
     }
 
 

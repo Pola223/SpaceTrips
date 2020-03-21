@@ -65,15 +65,18 @@ public class TouristController {
         boolean isAnythingToChangeProvided = name.isPresent() || lastName.isPresent() || notes.isPresent();
 
         if (isAnythingToChangeProvided){
+            Tourist myTourist = touristRepository.findTouristById(id);
             if (name.isPresent()){
-                touristRepository.findTouristById(id).setName(name.toString());
-
+                myTourist.setName(name.toString().substring(9).replace("]",""));
             }
             if (lastName.isPresent()) {
-                touristRepository.findTouristById(id).setLastName(lastName.toString());
-
+                myTourist.setName(lastName.toString().substring(9).replace("]",""));
             }
-            return ResponseEntity.ok("Tourist not changed");
+            if (notes.isPresent()){
+                myTourist.setName(notes.toString().substring(9).replace("]",""));
+            }
+            touristRepository.save(myTourist);
+            return ResponseEntity.ok("Tourist changed");
         } else {
             return ResponseEntity.ok("NOTHING TO CHANGE");
         }
