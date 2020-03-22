@@ -20,7 +20,7 @@ public class Tourist {
     private String notes;
     private LocalDate birthDate;
 
-    @OneToMany
+    @ManyToMany
     List<Flight> flights = new ArrayList<>();
 
 

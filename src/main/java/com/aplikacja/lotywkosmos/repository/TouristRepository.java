@@ -3,6 +3,7 @@ package com.aplikacja.lotywkosmos.repository;
 import com.aplikacja.lotywkosmos.model.Flight;
 import com.aplikacja.lotywkosmos.model.Tourist;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,7 +25,11 @@ public interface TouristRepository extends CrudRepository<Tourist, Long> {
 
     Tourist save(Tourist tourist);
 
+    Tourist getTouristById(Long id);
+
     Tourist deleteTouristById(Long id);
+
+    Tourist removeTouristById(Long id);
 
     Tourist findTouristById(Long id);
 

@@ -3,6 +3,7 @@ package com.aplikacja.lotywkosmos.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -19,11 +20,15 @@ public class Flight {
     private Integer seatsAvailable;
     private Integer ticketPrice;
 
+    @ManyToMany
+    List<Tourist> passengers = new ArrayList<>();
+
+    
     public Flight() {
     }
 
-    public Flight(String takeoffDateTime, LocalDateTime landingDateTime, int seatsAvailable, Integer ticketPrice){
-        this.takeoffDateTime = LocalDateTime.parse(takeoffDateTime);
+    public Flight(LocalDateTime takeoffDateTime, LocalDateTime landingDateTime, Integer seatsAvailable, Integer ticketPrice){
+        this.takeoffDateTime = takeoffDateTime;
         this.landingDateTime = landingDateTime;
         this.seatsAvailable = seatsAvailable;
         this.ticketPrice = ticketPrice;

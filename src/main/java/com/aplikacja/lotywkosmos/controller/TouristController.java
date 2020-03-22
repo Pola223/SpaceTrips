@@ -51,30 +51,32 @@ public class TouristController {
 
     @DeleteMapping("/tourists/{id}")
     public ResponseEntity<?> deleteTourist(@PathVariable("id") Long id){
-        touristRepository.deleteTouristById(id);
-        return ResponseEntity.ok("OK");
+
+        Tourist myTourist = touristRepository.getTouristById(id);
+        touristRepository.delete(myTourist);
+
+        return ResponseEntity.ok("Usunięto wpis!");
     }
 
+
     @PatchMapping("tourists/{id}")
-    public ResponseEntity<?> changeNameTourist(@PathVariable("id") Long id,
-                                               @RequestParam("name") Optional<String> name,
-                                               @RequestParam("lastName") Optional<String> lastName,
-                                               @RequestParam("notes") Optional<String> notes
+    public ResponseEntity<?> changeTourist(@PathVariable("id") Long id,
+                                           @RequestParam("name") Optional<String> name,
+                                           @RequestParam("lastName") Optional<String> lastName,
+                                           @RequestParam("notes") Optional<String> notes
                                             ){
 
         boolean isAnythingToChangeProvided = name.isPresent() || lastName.isPresent() || notes.isPresent();
 
         if (isAnythingToChangeProvided){
             Tourist myTourist = touristRepository.findTouristById(id);
-            if (name.isPresent()){
-                myTourist.setName(name.toString().substring(9).replace("]",""));
-            }
-            if (lastName.isPresent()) {
-                myTourist.setName(lastName.toString().substring(9).replace("]",""));
-            }
+
+            name.ifPresent(myTourist::setName);
+            lastName.ifPresent(myTourist::setLastName);
             if (notes.isPresent()){
-                myTourist.setName(notes.toString().substring(9).replace("]",""));
+                myTourist.setNotes(notes.get());
             }
+
             touristRepository.save(myTourist);
             return ResponseEntity.ok("Tourist changed");
         } else {
