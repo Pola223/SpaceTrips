@@ -2,6 +2,7 @@ package com.aplikacja.lotywkosmos.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +12,15 @@ import java.util.List;
 public class Tourist {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotBlank(message = "You have to provide first name")
     private String name;
+
+    @NotBlank(message = "You have to provide last name")
     private String lastName;
+
     private String sex;         //M or F
     private String country;
     private String notes;
@@ -101,5 +107,8 @@ public class Tourist {
         return flights;
     }
 
+    public void addFlight(Flight flight){
+        flights.add(flight);
+    }
 
 }

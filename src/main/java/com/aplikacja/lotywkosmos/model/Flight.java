@@ -23,7 +23,7 @@ public class Flight {
     @ManyToMany
     List<Tourist> passengers = new ArrayList<>();
 
-    
+
     public Flight() {
     }
 

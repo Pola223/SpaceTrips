@@ -1,9 +1,11 @@
 package com.aplikacja.lotywkosmos.controller;
 
 
+import com.aplikacja.lotywkosmos.model.Flight;
 import com.aplikacja.lotywkosmos.model.Tourist;
 import com.aplikacja.lotywkosmos.repository.FlightRepository;
 import com.aplikacja.lotywkosmos.repository.TouristRepository;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,12 +43,25 @@ public class TouristController {
 
     }
 
+/*
+    //TODO: Zrobić, żeby działało
+    //dodawanie nowego lotu turyście
+    @PostMapping("/tourist/{id}/flights")
+    public List<Flight> addTouristFlights(@PathVariable("id") Long id,
+                                          @RequestBody Flight flight){
+        Tourist myTourist = touristRepository.getTouristById(id);
+        myTourist.getFlights().add(flight);
+        return myTourist.getFlights();
+    }
+*/
 
+    //dodawanie nowego turysty
     @PostMapping("/tourists")
     public ResponseEntity<?> addTourist(@RequestBody Tourist tourist){
         touristRepository.save(tourist);
         return ResponseEntity.ok(tourist);
     }
+
 
 
     @DeleteMapping("/tourists/{id}")
@@ -83,8 +98,9 @@ public class TouristController {
             return ResponseEntity.ok("NOTHING TO CHANGE");
         }
 
-
     }
+
+
 
 
 
