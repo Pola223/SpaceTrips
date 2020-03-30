@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +14,8 @@ public class Flight {
     @Id
     @GeneratedValue
     private Long id;
+
+    private String destination;
     private LocalDateTime takeoffDateTime;
     private LocalDateTime landingDateTime;
     private Integer seatsAvailable;
@@ -27,12 +28,15 @@ public class Flight {
     public Flight() {
     }
 
-    public Flight(LocalDateTime takeoffDateTime, LocalDateTime landingDateTime, Integer seatsAvailable, Integer ticketPrice){
+    public Flight(String destination, LocalDateTime takeoffDateTime, LocalDateTime landingDateTime, Integer seatsAvailable, Integer ticketPrice){
+        this.destination = destination;
         this.takeoffDateTime = takeoffDateTime;
         this.landingDateTime = landingDateTime;
         this.seatsAvailable = seatsAvailable;
         this.ticketPrice = ticketPrice;
     }
+
+
 
     public Long getId() {
         return id;
@@ -40,6 +44,15 @@ public class Flight {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
 

@@ -27,10 +27,6 @@ public interface TouristRepository extends CrudRepository<Tourist, Long> {
 
     Tourist getTouristById(Long id);
 
-    Tourist deleteTouristById(Long id);
-
-    Tourist removeTouristById(Long id);
-
     Tourist findTouristById(Long id);
 
 

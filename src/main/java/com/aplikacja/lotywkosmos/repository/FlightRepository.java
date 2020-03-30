@@ -16,6 +16,12 @@ public interface FlightRepository extends CrudRepository<Flight, Long> {
 
     Flight getFlightById(Long id);
 
+    List<Flight> findFlightsByDestination(String destination);
+
+    List<Flight> findFlightsByTicketPrice(Integer ticketPrice);
+
+    List<Flight> findFlightsByDestinationAndTicketPrice(String destination, Integer ticketPrice);
+
     Flight save(Flight flight);
 
     Flight deleteFlightById(Long id);

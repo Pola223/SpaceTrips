@@ -43,19 +43,24 @@ public class TouristController {
 
     }
 
-/*
-    //TODO: Zrobić, żeby działało
+
+    //nie dziala tak jak powinno
     //dodawanie nowego lotu turyście
-    @PostMapping("/tourist/{id}/flights")
+    @PostMapping("/tourists/{id}/flights")
     public List<Flight> addTouristFlights(@PathVariable("id") Long id,
                                           @RequestBody Flight flight){
-        Tourist myTourist = touristRepository.getTouristById(id);
-        myTourist.getFlights().add(flight);
-        return myTourist.getFlights();
-    }
-*/
 
-    //dodawanie nowego turysty
+        try {
+            touristRepository.getTouristById(id).getFlights().add(flight);
+        } catch (Exception e) {
+            ResponseEntity.badRequest();
+        }
+
+        return touristRepository.getTouristById(id).getFlights();
+
+    }
+
+
     @PostMapping("/tourists")
     public ResponseEntity<?> addTourist(@RequestBody Tourist tourist){
         touristRepository.save(tourist);
@@ -70,7 +75,7 @@ public class TouristController {
         Tourist myTourist = touristRepository.getTouristById(id);
         touristRepository.delete(myTourist);
 
-        return ResponseEntity.ok("Usunięto wpis!");
+        return ResponseEntity.ok("Tourist deleted!");
     }
 
 
