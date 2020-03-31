@@ -27,7 +27,7 @@ public class Tourist {
     private LocalDate birthDate;
 
     @ManyToMany
-    List<Flight> flights = new ArrayList<>();
+    List<Flight> flights;
 
 
     public Tourist(){}
