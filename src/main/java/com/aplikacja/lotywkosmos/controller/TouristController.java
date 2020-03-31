@@ -43,22 +43,27 @@ public class TouristController {
 
     }
 
+    @GetMapping("/tourists/{id}/flights")
+    public List<Flight> getFlightsForTourist(@PathVariable("id") Long id){
+        return touristRepository.getTouristById(id).getFlights();
+    }
+
 
     //nie dziala tak jak powinno
     //dodawanie nowego lotu turyście
     @PostMapping("/tourists/{id}/flights")
-    public List<Flight> addTouristFlights(@PathVariable("id") Long id,
+    public Tourist addTouristFlights(@PathVariable("id") Long id,
                                           @RequestBody Flight flight){
 
         try {
             List<Flight> myFlights = touristRepository.getTouristById(id).getFlights();
             //myFlights.add(flight);
-            touristRepository.getTouristById(id).addFlight(flight);
+            touristRepository.findTouristById(id).addFlight(flight);
         } catch (Exception e) {
             ResponseEntity.badRequest();
         }
 
-        return touristRepository.getTouristById(id).getFlights();
+        return touristRepository.getTouristById(id);
     }
 
 
