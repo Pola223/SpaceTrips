@@ -59,7 +59,6 @@ public class TouristController {
         }
 
         return touristRepository.getTouristById(id).getFlights();
-
     }
 
 
