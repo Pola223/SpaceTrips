@@ -90,4 +90,14 @@ public class Flight {
     public void setTicketPrice(Integer ticketPrice) {
         this.ticketPrice = ticketPrice;
     }
+
+
+    public List<Tourist> getPassengers() {
+        return passengers;
+    }
+
+    public void addPassengers(Tourist tourist) {
+        passengers.add(tourist);
+    }
+
 }

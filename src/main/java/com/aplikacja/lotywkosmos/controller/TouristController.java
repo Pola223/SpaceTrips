@@ -51,7 +51,9 @@ public class TouristController {
                                           @RequestBody Flight flight){
 
         try {
-            touristRepository.getTouristById(id).getFlights().add(flight);
+            List<Flight> myFlights = touristRepository.getTouristById(id).getFlights();
+            //myFlights.add(flight);
+            touristRepository.getTouristById(id).addFlight(flight);
         } catch (Exception e) {
             ResponseEntity.badRequest();
         }
