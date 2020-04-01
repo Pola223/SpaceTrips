@@ -13,6 +13,7 @@ public class Tourist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    //@ColumnName(name="id", updatable = false, nullable = false)
     private Long id;
 
     @NotBlank(message = "You have to provide first name")
@@ -26,7 +27,8 @@ public class Tourist {
     private String notes;
     private LocalDate birthDate;
 
-    @ManyToMany
+    //@ManyToMany
+    @ElementCollection
     List<Flight> flights = new ArrayList<>();
 
 

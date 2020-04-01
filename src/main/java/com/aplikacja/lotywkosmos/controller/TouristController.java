@@ -55,15 +55,14 @@ public class TouristController {
     public Tourist addTouristFlights(@PathVariable("id") Long id,
                                           @RequestBody Flight flight){
 
+        Tourist t = touristRepository.findTouristById(id);
         try {
-            Tourist t = touristRepository.findTouristById(id);
             t.addFlight(flight);
-            touristRepository.save(t);
         } catch (Exception e) {
             ResponseEntity.badRequest();
         }
 
-        return touristRepository.getTouristById(id);
+        return t;
     }
 
 
