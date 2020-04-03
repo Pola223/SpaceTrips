@@ -27,9 +27,9 @@ public class Tourist {
     private String notes;
     private LocalDate birthDate;
 
-    @OneToMany
+    //@OneToMany
     @ElementCollection
-    private List<Flight> flights = new ArrayList<>();
+    private List<String[]> flights = new ArrayList<>();
 
 
     public Tourist(){}
@@ -117,12 +117,13 @@ public class Tourist {
     }
 
 
-    public List<Flight> getFlights(){
+    public List<String[]> getFlights(){
         return flights;
     }
 
     public void addFlight(Flight flight){
-        flights.add(flight);
+        String[] flightString = {flight.getId().toString(), flight.getDestination(), flight.getTakeoffDateTime().toString()};
+        flights.add(flightString);
     }
 
 }

@@ -44,7 +44,7 @@ public class TouristController {
     }
 
     @GetMapping("/tourists/{id}/flights")
-    public List<Flight> getFlightsForTourist(@PathVariable("id") Long id){
+    public List<String[]> getFlightsForTourist(@PathVariable("id") Long id){
         return touristRepository.getTouristById(id).getFlights();
     }
 
@@ -65,9 +65,9 @@ public class TouristController {
 
         //dodawanie tego turysty do lotu:
         Flight flight1 = flightRepository.findFlightById(flight.getId());
-        if (!flight.getPassengers().contains(t)){
-            flight.addPassengers(t);
-            flightRepository.save(flight);
+        if (!flight1.getPassengers().contains(t)){
+            flight1.addPassengers(t);
+            flightRepository.save(flight1);
         }
 
         return t;
