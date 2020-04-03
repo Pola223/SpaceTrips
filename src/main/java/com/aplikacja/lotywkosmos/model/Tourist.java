@@ -27,9 +27,9 @@ public class Tourist {
     private String notes;
     private LocalDate birthDate;
 
-    //@ManyToMany
+    @OneToMany
     @ElementCollection
-    List<Flight> flights = new ArrayList<>();
+    private List<Flight> flights = new ArrayList<>();
 
 
     public Tourist(){}
@@ -40,6 +40,18 @@ public class Tourist {
         this.sex = sex;
         this.country = country;
         this.birthDate = birthDate;
+    }
+
+    @Override
+    public String toString() {
+        String myStr = "id : " + this.getId() +
+                        "\nname: " + this.getName() +
+                        "\nlast name: " + this.getLastName() +
+                        "\nsex: " + this.getSex() +
+                        "\ncountry: " + this.getCountry() +
+                        "\nnotes: " + this.getNotes() +
+                        "\nbirth date: " + this.getBirthDate();
+        return myStr;
     }
 
     public Long getId() {

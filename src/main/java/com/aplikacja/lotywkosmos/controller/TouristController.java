@@ -52,14 +52,22 @@ public class TouristController {
     //nie dziala tak jak powinno
     //dodawanie nowego lotu turyście
     @PostMapping("/tourists/{id}/flights")
-    public Tourist addTouristFlights(@PathVariable("id") Long id,
+    public Tourist addFlightToTourist(@PathVariable("id") Long id,
                                           @RequestBody Flight flight){
 
         Tourist t = touristRepository.findTouristById(id);
         try {
             t.addFlight(flight);
+            touristRepository.save(t);
         } catch (Exception e) {
             ResponseEntity.badRequest();
+        }
+
+        //dodawanie tego turysty do lotu:
+        Flight flight1 = flightRepository.findFlightById(flight.getId());
+        if (!flight.getPassengers().contains(t)){
+            flight.addPassengers(t);
+            flightRepository.save(flight);
         }
 
         return t;

@@ -42,11 +42,41 @@ public class FlightController {
         }
     }
 
+    @GetMapping("/flights/{id}/tourists")
+    public List<Tourist> getFlightPassengers(@PathVariable("id") Long id){
+        return flightRepository.findFlightById(id).getPassengers();
+    }
+
 
     @PostMapping("/flights")
     public ResponseEntity<?> addFlight(@RequestBody Flight flight){
         flightRepository.save(flight);
         return ResponseEntity.ok(flight);
+    }
+
+    @PostMapping("/flights/{id}/tourists")
+    public Flight addTouristToFlight(@PathVariable("id") Long id,
+                                     @RequestBody Tourist tourist){
+
+        Flight f = flightRepository.findFlightById(id);
+        try {
+            f.addPassengers(tourist);
+            flightRepository.save(f);
+        } catch (Exception e){
+            ResponseEntity.badRequest();
+        }
+
+
+        //touristRepository.findTouristById(tourist.getId());
+        /*
+        if (!tourist.getFlights().contains(f)){
+            tourist.addFlight(f);
+            touristRepository.save(tourist);
+        }
+*/
+
+
+        return f;
     }
 
 
