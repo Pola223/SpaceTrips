@@ -66,14 +66,16 @@ public class FlightController {
             ResponseEntity.badRequest();
         }
 
+        //dodawanie lotu do profilu turysty
+        Tourist tourist1 = touristRepository.findTouristById(tourist.getId());
+        List<String[]> listOfFlights = tourist1.getFlights();
+        String[] flightDescription= {f.getId().toString(), f.getDestination(), f.getTakeoffDateTime().toString()};
 
-        //touristRepository.findTouristById(tourist.getId());
-        /*
-        if (!tourist.getFlights().contains(f)){
-            tourist.addFlight(f);
+        if (!listOfFlights.contains(flightDescription)){
+            tourist1.addFlight(f);
             touristRepository.save(tourist);
         }
-*/
+
 
 
         return f;

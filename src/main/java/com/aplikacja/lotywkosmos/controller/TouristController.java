@@ -49,7 +49,6 @@ public class TouristController {
     }
 
 
-    //nie dziala tak jak powinno
     //dodawanie nowego lotu turyście
     @PostMapping("/tourists/{id}/flights")
     public Tourist addFlightToTourist(@PathVariable("id") Long id,
