@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface TouristRepository extends CrudRepository<Tourist, Long> {
 
-    List<Tourist> findAll();
+    //List<Tourist> findAll();
 
     List<Tourist> findTouristsByName(String name);
 
